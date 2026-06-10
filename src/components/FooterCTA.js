@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import FadeInUp from './FadeInUp';
 
 export default function FooterCTA() {
@@ -10,8 +10,16 @@ export default function FooterCTA() {
     message: ''
   });
 
+  const textareaRef = useRef(null);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    
+    // 如果是留言框，自動根據內容字數拉長高度
+    if (e.target.name === 'message' && textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
   };
 
   const handleSubmit = (e) => {
@@ -80,6 +88,7 @@ export default function FooterCTA() {
               </p>
               
               <textarea 
+                ref={textareaRef}
                 name="message"
                 rows="4"
                 placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下妳的悄悄話... ）"
@@ -217,7 +226,8 @@ const styles = {
     padding: '16px',
     borderRadius: '8px',
     outline: 'none',
-    resize: 'vertical',
+    resize: 'none',
+    overflow: 'hidden',
     marginTop: '24px',
     lineHeight: 1.6,
   },
