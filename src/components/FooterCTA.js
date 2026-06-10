@@ -33,21 +33,24 @@ export default function FooterCTA() {
       `期待能透過 ${formData.email} 與你進一步聊聊！\n\n` +
       (formData.message ? `-----\n${formData.message}\n` : '');
 
-    const formPayload = new FormData();
-    // TODO: 柔柔需要在此處填入她的 Web3Forms Access Key
-    formPayload.append("access_key", "YOUR_ACCESS_KEY_HERE"); 
-    formPayload.append("subject", `[來自作品集網站] ${formData.name} 的面試/合作邀約`);
-    formPayload.append("from_name", "作品集網站自動信差");
-    formPayload.append("replyto", formData.email);
-    formPayload.append("message", bodyContent);
+    const formPayload = {
+      name: formData.name,
+      email: formData.email, // Formspree 會自動抓取這個作為回信地址
+      project: formData.project,
+      message: bodyContent,
+      _subject: `[來自作品集網站] ${formData.name} 的面試/合作邀約` // Formspree 自訂主旨的寫法
+    };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // TODO: 柔柔需要在此處填入她的 Formspree 專屬網址 (例如: https://formspree.io/f/abcdefgh)
+      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID_HERE", {
         method: "POST",
-        body: formPayload
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formPayload)
       });
-      const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         setStatus('success');
       } else {
         setStatus('error');
