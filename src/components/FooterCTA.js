@@ -21,8 +21,8 @@ export default function FooterCTA() {
       `最近看了妳的專案，對 ${formData.project} 很感興趣。\n\n` +
       `期待能透過 ${formData.email} 與妳進一步聊聊！`
     );
-    // 開啟使用者的信箱軟體
-    window.location.href = `mailto:b0938723075@gmail.com?subject=${subject}&body=${body}`;
+    // 開啟 Gmail 撰寫新信件視窗
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=b0938723075@gmail.com&su=${subject}&body=${body}`, '_blank');
     alert('已為您啟動信箱軟體！若畫面未跳轉，請檢查您的瀏覽器設定。');
   };
 
@@ -90,7 +90,7 @@ export default function FooterCTA() {
             <div style={styles.sidePanelLine}></div>
             <h4 style={styles.sidePanelTitle}>Connect</h4>
             
-            <a href="mailto:b0938723075@gmail.com" style={styles.iconLink} title="Email Me">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=b0938723075@gmail.com" target="_blank" rel="noopener noreferrer" style={styles.iconLink} title="Email Me via Gmail">
               <div style={styles.iconCircle}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>

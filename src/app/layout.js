@@ -3,13 +3,13 @@ import CustomScrollbar from '@/components/CustomScrollbar';
 
 export const metadata = {
   metadataBase: new URL('https://my-portfolio-pi-rose-24.vercel.app/'),
-  title: "Yurou Chen | Portfolio",
+  title: "Yu Jou Chen｜portfolio",
   description: "設計是為了解決問題，更是為了傳遞溫暖。",
   openGraph: {
-    title: "Yurou Chen | Portfolio",
+    title: "Yu Jou Chen｜portfolio",
     description: "設計是為了解決問題，更是為了傳遞溫暖。",
     url: 'https://my-portfolio-pi-rose-24.vercel.app/',
-    siteName: 'Yurou Chen Portfolio',
+    siteName: 'Yu Jou Chen｜portfolio',
     images: [
       {
         url: '/profile.jpg',
