@@ -6,7 +6,8 @@ export default function FooterCTA() {
   const [formData, setFormData] = useState({
     name: '',
     project: '',
-    email: ''
+    email: '',
+    message: ''
   });
 
   const handleChange = (e) => {
@@ -19,7 +20,8 @@ export default function FooterCTA() {
     const body = encodeURIComponent(
       `你好，我是 ${formData.name}，\n\n` +
       `最近看了妳的專案，對 ${formData.project} 很感興趣。\n\n` +
-      `期待能透過 ${formData.email} 與妳進一步聊聊！`
+      `期待能透過 ${formData.email} 與妳進一步聊聊！\n\n` +
+      (formData.message ? `-----\n${formData.message}\n` : '')
     );
     // 開啟 Gmail 撰寫新信件視窗
     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=b0938723075@gmail.com&su=${subject}&body=${body}`, '_blank');
@@ -76,6 +78,15 @@ export default function FooterCTA() {
                 />
                 與妳進一步聊聊！」
               </p>
+              
+              <textarea 
+                name="message"
+                rows="4"
+                placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下妳的悄悄話... ）"
+                style={styles.textareaField}
+                value={formData.message}
+                onChange={handleChange}
+              />
               
               <div style={styles.buttonWrapper}>
                 <button type="submit" className="antigravity-btn pulse-effect" style={styles.submitButton}>
@@ -195,6 +206,20 @@ const styles = {
     cursor: 'pointer',
     appearance: 'none',
     textAlign: 'center',
+  },
+  textareaField: {
+    fontFamily: "'Noto Serif TC', serif",
+    fontSize: '1.1rem',
+    color: 'var(--text-main)',
+    width: '100%',
+    background: 'rgba(60, 53, 46, 0.02)',
+    border: '1px dashed #D4A373',
+    padding: '16px',
+    borderRadius: '8px',
+    outline: 'none',
+    resize: 'vertical',
+    marginTop: '24px',
+    lineHeight: 1.6,
   },
   buttonWrapper: {
     display: 'flex',
