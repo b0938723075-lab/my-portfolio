@@ -32,12 +32,12 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     position: 'relative',
-    padding: '180px 5% 100px', // 強制頂部預留 180px，絕對不會被導覽列遮住
+    padding: '120px 5% 100px', // 頂部預留 120px 給導覽列，底部預留 100px 給滾動提示
   },
   content: {
     textAlign: 'center',
     maxWidth: '800px',
-    margin: '0 auto', // 取消垂直彈性置中，改為單純水平置中，確保永遠從 180px 的高度往下排版
+    margin: 'auto', // 運用 flexbox 特性進行完美的垂直置中，且小螢幕時不會被切掉頭部
     padding: 'clamp(40px, 5vw, 60px) clamp(20px, 5vw, 80px)',
     borderRadius: '24px',
     background: 'rgba(255, 255, 255, 0.2)',
