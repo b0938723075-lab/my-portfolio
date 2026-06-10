@@ -296,3 +296,22 @@ a {
 
 
 
+
+/* 讓 textarea 恢復顯示小滾輪 (捲動條) 並美化 */
+textarea::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+textarea::-webkit-scrollbar-track {
+  background: rgba(60, 53, 46, 0.02);
+  border-radius: 4px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: var(--accent-sun);
+  border-radius: 4px;
+}
+textarea {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-sun) rgba(60, 53, 46, 0.02);
+  overflow-y: auto;
+}
