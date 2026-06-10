@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav style={styles.nav}>
       <Link href="/" style={{ textDecoration: 'none' }}>
         <div style={styles.logo}>
-          <span style={styles.icon}>✧</span> Yu Jou Chen｜portfolio
+          <span style={styles.icon}>✧</span> 陳育柔/ 1F
         </div>
       </Link>
       <div style={styles.links}>
