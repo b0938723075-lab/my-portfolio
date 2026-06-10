@@ -27,20 +27,18 @@ export default function HeroSection() {
 
 const styles = {
   hero: {
-    height: '100vh',
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    padding: '0 5%',
-    paddingTop: '100px', // 預留導覽列的高度，避免內容被遮住
+    padding: '120px 5% 100px', // 頂部預留 120px 給導覽列，底部預留 100px 給滾動提示
   },
   content: {
     textAlign: 'center',
     maxWidth: '800px',
-    margin: '0 auto',
-    padding: '60px 80px',
+    margin: 'auto', // 運用 flexbox 特性進行完美的垂直置中，且小螢幕時不會被切掉頭部
+    padding: 'clamp(40px, 5vw, 60px) clamp(20px, 5vw, 80px)',
     borderRadius: '24px',
     background: 'rgba(255, 255, 255, 0.2)',
     backdropFilter: 'blur(12px)',
