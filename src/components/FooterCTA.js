@@ -27,8 +27,8 @@ export default function FooterCTA() {
     const subject = encodeURIComponent(`[Portfolio] 來自 ${formData.name} 的合作聯繫`);
     const body = encodeURIComponent(
       `你好，我是 ${formData.name}，\n\n` +
-      `最近看了妳的專案，對 ${formData.project} 很感興趣。\n\n` +
-      `期待能透過 ${formData.email} 與妳進一步聊聊！\n\n` +
+      `最近看了你的專案，對 ${formData.project} 很感興趣。\n\n` +
+      `期待能透過 ${formData.email} 與你進一步聊聊！\n\n` +
       (formData.message ? `-----\n${formData.message}\n` : '')
     );
     // 開啟 Gmail 撰寫新信件視窗
@@ -53,14 +53,14 @@ export default function FooterCTA() {
                 <input 
                   type="text" 
                   name="name" 
-                  placeholder="請輸入妳的名字/單位" 
+                  placeholder="請輸入你的名字/單位" 
                   style={styles.inputField}
                   value={formData.name}
                   onChange={handleChange}
                   required
                 />
                 ，<br/><br/>
-                最近看了妳的專案，對 
+                最近看了你的專案，對 
                 <select 
                   name="project" 
                   style={styles.selectField}
@@ -84,14 +84,14 @@ export default function FooterCTA() {
                   onChange={handleChange}
                   required
                 />
-                與妳進一步聊聊！」
+                與你進一步聊聊！」
               </p>
               
               <textarea 
                 ref={textareaRef}
                 name="message"
                 rows="4"
-                placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下妳的悄悄話... ）"
+                placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下你的悄悄話... ）"
                 style={styles.textareaField}
                 value={formData.message}
                 onChange={handleChange}
