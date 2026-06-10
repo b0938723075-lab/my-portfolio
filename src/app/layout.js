@@ -2,8 +2,25 @@ import "./globals.css";
 import CustomScrollbar from '@/components/CustomScrollbar';
 
 export const metadata = {
+  metadataBase: new URL('https://my-portfolio-pi-rose-24.vercel.app/'),
   title: "Yurou Chen | Portfolio",
-  description: "Z-pattern layout portfolio website with Antigravity styling",
+  description: "設計是為了解決問題，更是為了傳遞溫暖。",
+  openGraph: {
+    title: "Yurou Chen | Portfolio",
+    description: "設計是為了解決問題，更是為了傳遞溫暖。",
+    url: 'https://my-portfolio-pi-rose-24.vercel.app/',
+    siteName: 'Yurou Chen Portfolio',
+    images: [
+      {
+        url: '/profile.jpg',
+        width: 800,
+        height: 800,
+        alt: 'Yurou Chen Profile Picture',
+      },
+    ],
+    locale: 'zh_TW',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {
