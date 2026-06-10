@@ -34,6 +34,7 @@ const styles = {
     alignItems: 'center',
     position: 'relative',
     padding: '0 5%',
+    paddingTop: '100px', // 預留導覽列的高度，避免內容被遮住
   },
   content: {
     textAlign: 'center',
