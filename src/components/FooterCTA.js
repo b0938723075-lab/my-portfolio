@@ -9,6 +9,7 @@ export default function FooterCTA() {
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle');
 
   const textareaRef = useRef(null);
 
@@ -22,18 +23,40 @@ export default function FooterCTA() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[Portfolio] 來自 ${formData.name} 的合作聯繫`);
-    const body = encodeURIComponent(
+    setStatus('loading');
+
+    const bodyContent = 
       `你好，我是 ${formData.name}，\n\n` +
       `最近看了你的專案，對 ${formData.project} 很感興趣。\n\n` +
       `期待能透過 ${formData.email} 與你進一步聊聊！\n\n` +
-      (formData.message ? `-----\n${formData.message}\n` : '')
-    );
-    // 開啟 Gmail 撰寫新信件視窗
-    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=b0938723075@gmail.com&su=${subject}&body=${body}`, '_blank');
-    alert('已為您啟動信箱軟體！若畫面未跳轉，請檢查您的瀏覽器設定。');
+      (formData.message ? `-----\n${formData.message}\n` : '');
+
+    const formPayload = new FormData();
+    // TODO: 柔柔需要在此處填入她的 Web3Forms Access Key
+    formPayload.append("access_key", "YOUR_ACCESS_KEY_HERE"); 
+    formPayload.append("subject", `[來自作品集網站] ${formData.name} 的面試/合作邀約`);
+    formPayload.append("from_name", "作品集網站自動信差");
+    formPayload.append("replyto", formData.email);
+    formPayload.append("message", bodyContent);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload
+      });
+      const data = await response.json();
+      if (data.success) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        console.error(data);
+      }
+    } catch (error) {
+      setStatus('error');
+      console.error(error);
+    }
   };
 
   return (
@@ -98,8 +121,16 @@ export default function FooterCTA() {
               />
               
               <div style={styles.buttonWrapper}>
-                <button type="submit" className="antigravity-btn pulse-effect" style={styles.submitButton}>
-                  封裝膠囊 / 送出
+                <button 
+                  type="submit" 
+                  className="antigravity-btn pulse-effect" 
+                  style={{...styles.submitButton, opacity: status === 'loading' || status === 'success' ? 0.7 : 1}}
+                  disabled={status === 'loading' || status === 'success'}
+                >
+                  {status === 'idle' && '封裝膠囊 / 送出'}
+                  {status === 'loading' && '信件傳送中...'}
+                  {status === 'success' && '已經成功送達！'}
+                  {status === 'error' && '傳送失敗，請重試'}
                 </button>
               </div>
             </form>
