@@ -12,10 +12,10 @@ export const metadata = {
     siteName: 'Yu Jou Chen｜portfolio',
     images: [
       {
-        url: '/profile.jpg',
-        width: 800,
-        height: 800,
-        alt: 'Yurou Chen Profile Picture',
+        url: '/og-cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Yu Jou Chen Portfolio Cover',
       },
     ],
     locale: 'zh_TW',
