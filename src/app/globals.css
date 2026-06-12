@@ -153,18 +153,21 @@ a {
 
 /* 毛玻璃外殼 (Glass Wrapper) */
 .glass-card {
-  background-color: rgba(234, 229, 217, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.5); /* 提高白底比例，與背景拉開層次 */
+  backdrop-filter: blur(24px); /* 增強毛玻璃模糊感 */
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 16px; /* 稍微增加圓角 */
   padding: 12px;
-  box-shadow: 0 4px 20px rgba(60, 53, 46, 0.04);
-  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* 加上玻璃邊緣的反光感 */
+  box-shadow: 0 8px 32px rgba(60, 53, 46, 0.08); /* 加深陰影讓卡片浮起來 */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
 }
 
 .glass-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(60, 53, 46, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(60, 53, 46, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 /* 微動態按鈕 */

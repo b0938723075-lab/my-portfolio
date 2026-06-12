@@ -5,7 +5,8 @@ export default function Navbar() {
     <nav style={styles.nav}>
       <Link href="/" style={{ textDecoration: 'none' }}>
         <div style={styles.logo}>
-          <span style={styles.icon}>✧</span> 陳育柔/ 1F
+          <img src="/cat-logo.jpg" alt="Cat Logo" style={styles.catLogo} />
+          陳育柔/ 1F
         </div>
       </Link>
       <div style={styles.links}>
@@ -42,9 +43,12 @@ const styles = {
     gap: '8px',
     color: 'var(--text-main)',
   },
-  icon: {
-    color: 'var(--accent-sun)',
-    fontSize: '1.5rem',
+  catLogo: {
+    height: '36px',
+    width: '36px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+    boxShadow: '0 2px 10px rgba(60, 53, 46, 0.1)',
   },
   links: {
     display: 'flex',

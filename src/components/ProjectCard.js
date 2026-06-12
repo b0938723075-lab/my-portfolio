@@ -33,7 +33,7 @@ export default function ProjectCard({
               {imageSrc ? (
                 <img src={imageSrc} alt={`${title} cover`} style={{...styles.coverImage, objectFit: imageFit}} />
               ) : (
-                <span style={styles.imageText}>📄 點擊查看完整作品集 PDF</span>
+                <span style={styles.imageText}><span style={{color: 'var(--accent-sun)'}}>✧</span> 點擊查看完整作品集 PDF</span>
               )}
             </div>
           </a>
@@ -50,7 +50,7 @@ export default function ProjectCard({
 
         {videoSrc && (
           <div style={styles.videoContainer}>
-            <h4 style={styles.videoTitle}>🎬 {videoTitle}</h4>
+            <h4 style={styles.videoTitle}><span style={{color: 'var(--accent-sun)'}}>✧</span> {videoTitle}</h4>
             <video 
               src={videoSrc} 
               controls 
@@ -74,21 +74,21 @@ export default function ProjectCard({
         )}
         
         <div style={styles.listSection}>
-          <h4 style={styles.listTitle}>🎯 痛點 (Pain Points)</h4>
+          <h4 style={styles.listTitle}><span style={{color: 'var(--accent-sun)'}}>✧</span> 痛點 (Pain Points)</h4>
           <ul style={styles.list}>
             {painPoints.map((pt, i) => <li key={i} style={styles.listItem}>{pt}</li>)}
           </ul>
         </div>
 
         <div style={styles.listSection}>
-          <h4 style={styles.listTitle}>🛠 技術 (Technologies)</h4>
+          <h4 style={styles.listTitle}><span style={{color: 'var(--accent-sun)'}}>✧</span> 技術 (Technologies)</h4>
           <ul style={styles.list}>
             {techStack.map((tech, i) => <li key={i} style={styles.listItem}>{tech}</li>)}
           </ul>
         </div>
 
         <div style={styles.listSection}>
-          <h4 style={styles.listTitle}>✨ 成果 (Results)</h4>
+          <h4 style={styles.listTitle}><span style={{color: 'var(--accent-sun)'}}>✧</span> 成果 (Results)</h4>
           <ul style={styles.list}>
             {results.map((res, i) => (
               <li key={i} style={styles.listItem}>
@@ -102,7 +102,7 @@ export default function ProjectCard({
 
         {highlights && highlights.length > 0 && (
           <div style={styles.listSection}>
-            <h4 style={styles.listTitle}>💡 產品亮點 (Highlights)</h4>
+            <h4 style={styles.listTitle}><span style={{color: 'var(--accent-sun)'}}>✧</span> 產品亮點 (Highlights)</h4>
             <ul style={styles.list}>
               {highlights.map((hl, i) => (
                 <li key={i} style={styles.listItem}>
@@ -115,7 +115,7 @@ export default function ProjectCard({
 
         {websiteUrl && (
           <a href={websiteUrl} target="_blank" rel="noopener noreferrer" style={styles.websiteBtn} className="antigravity-btn pulse-effect">
-            🌐 前往作品官網
+            <span style={{color: '#fff', marginRight: '8px'}}>✧</span> 前往作品官網
           </a>
         )}
       </div>

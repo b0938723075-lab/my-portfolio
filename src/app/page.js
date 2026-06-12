@@ -13,18 +13,34 @@ export default function Home() {
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
       }
-      // 使用 setTimeout 確保在 React 渲染完成後才執行置頂或跳轉到指定區塊
       setTimeout(() => {
-        if (!window.location.hash) {
-          window.scrollTo(0, 0);
-        } else {
-          const id = window.location.hash.substring(1);
+        const hash = window.location.hash;
+        
+        // 判斷是否為「重新整理」網頁
+        const navEntries = performance.getEntriesByType("navigation");
+        const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+        if (hash === '#contact') {
+          // 例外 1：從「關於我」點擊聯絡 CTA 過來，必須精準跳轉到對話區塊
+          const element = document.getElementById('contact');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (hash && !isReload) {
+          // 例外 2：如果是從導覽列點擊作品等標籤「跨頁導覽」過來，正常跳轉
+          const id = hash.substring(1);
           const element = document.getElementById(id);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
+        } else {
+          // 保持原本指令：只要是重新整理或直接進首頁，一律強制置頂，並清除網址尾巴
+          window.scrollTo(0, 0);
+          if (hash) {
+            history.replaceState(null, null, ' ');
+          }
         }
-      }, 100); // 稍微延遲以確保 DOM 完全渲染
+      }, 100);
     }
   }, []);
 
@@ -93,7 +109,7 @@ export default function Home() {
         "Reels 短影音：使用 PAS 模型說明痛點，並以職人手沖畫面做為解方。",
         "IG 社群貼文：設計稀缺性與儀式感的視覺內容。",
         "Chatbot 自動化導流：設計線上心理測驗，依照店內老物對應專屬推薦的茶品與座位；線下尋寶則引導到店與命定老物打卡，獲取折價卷與實體明信片。",
-        "私域流量留存計畫：打造「時光信件」Email，將 Email 轉化為與旅人對話的秘密頻率——『在時間慢下來的地方，給未來的自己留一張紙條。』"
+        "私域流量留存計畫：打造「時光信件」Email，將 Email 轉化為與旅人對話的秘密頻率。"
       ],
       pdfUrl: "/優化-時光咖啡聽.pdf",
       imageSrc: "/cafe-cover.jpg",

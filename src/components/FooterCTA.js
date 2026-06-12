@@ -42,8 +42,8 @@ export default function FooterCTA() {
     };
 
     try {
-      // TODO: 柔柔需要在此處填入她的 Formspree 專屬網址 (例如: https://formspree.io/f/abcdefgh)
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID_HERE", {
+      // 將柔柔專屬的 Formspree ID 放進來
+      const response = await fetch("https://formspree.io/f/xvznbwnw", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -64,78 +64,105 @@ export default function FooterCTA() {
 
   return (
     <footer style={styles.footer} id="contact">
+      <style>{`
+        .contact-btn:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 32px rgba(60, 53, 46, 0.12) !important;
+          border-color: rgba(212, 163, 115, 0.4) !important;
+        }
+        .contact-btn:hover svg {
+          color: var(--accent-sun);
+        }
+        .contact-btn:hover .line-text,
+        .contact-btn:hover .phone-text {
+          color: var(--accent-sun) !important;
+        }
+      `}</style>
       <FadeInUp>
         <div style={styles.mainWrapper}>
           {/* 左側：時空膠囊留言板 */}
           <div style={styles.cardContainer} className="antigravity-card">
             <div style={styles.header}>
               <h2 style={styles.title}>旅人與時空留白</h2>
-              <p style={styles.subtitle}>在時間慢下來的地方，給未來的我們留一張紙條。</p>
+              <p style={styles.subtitle}>留下一張紙條，我們一起並肩作戰 !</p>
             </div>
             
             <form onSubmit={handleSubmit} style={styles.formContainer}>
-              <p style={styles.sentence}>
-                「 你好，我是 
-                <input 
-                  type="text" 
-                  name="name" 
-                  placeholder="請輸入你的名字/單位" 
-                  style={styles.inputField}
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-                ，<br/><br/>
-                最近看了你的專案，對 
-                <select 
-                  name="project" 
-                  style={styles.selectField}
-                  value={formData.project}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="" disabled>請選擇</option>
-                  <option value="旬汐茶品">旬汐茶品</option>
-                  <option value="時光沙漏">時光沙漏</option>
-                  <option value="整體品牌風格">整體品牌風格</option>
-                </select>
-                很感興趣。<br/><br/>
-                期待能透過 
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="請留下您的 Email" 
-                  style={styles.inputField}
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-                與你進一步聊聊！」
-              </p>
-              
-              <textarea 
-                ref={textareaRef}
-                name="message"
-                rows="4"
-                placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下你的悄悄話... ）"
-                style={styles.textareaField}
-                value={formData.message}
-                onChange={handleChange}
-              />
-              
-              <div style={styles.buttonWrapper}>
-                <button 
-                  type="submit" 
-                  className="antigravity-btn pulse-effect" 
-                  style={{...styles.submitButton, opacity: status === 'loading' || status === 'success' ? 0.7 : 1}}
-                  disabled={status === 'loading' || status === 'success'}
-                >
-                  {status === 'idle' && '封裝膠囊 / 送出'}
-                  {status === 'loading' && '信件傳送中...'}
-                  {status === 'success' && '已經成功送達！'}
-                  {status === 'error' && '傳送失敗，請重試'}
-                </button>
-              </div>
+              {status === 'success' ? (
+                <div style={{ textAlign: 'center', padding: '60px 0', animation: 'fadeIn 1s ease' }}>
+                  <p style={{ fontSize: '1.4rem', color: 'var(--accent-sun)', fontWeight: 500, lineHeight: 1.8 }}>
+                    時空膠囊已封裝。<br/>謝謝你的停留，我會盡快回信。
+                  </p>
+                  <style>{`
+                    @keyframes fadeIn {
+                      from { opacity: 0; transform: translateY(10px); }
+                      to { opacity: 1; transform: translateY(0); }
+                    }
+                  `}</style>
+                </div>
+              ) : (
+                <>
+                  <p style={styles.sentence}>
+                    「 你好，我是 
+                    <input 
+                      type="text" 
+                      name="name" 
+                      placeholder="請輸入你的名字/單位" 
+                      style={styles.inputField}
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    ，<br/><br/>
+                    最近看了你的專案，對 
+                    <select 
+                      name="project" 
+                      style={styles.selectField}
+                      value={formData.project}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="" disabled>請選擇</option>
+                      <option value="旬汐茶品">旬汐茶品</option>
+                      <option value="時光沙漏">時光沙漏</option>
+                      <option value="整體品牌風格">整體品牌風格</option>
+                    </select>
+                    很感興趣。<br/><br/>
+                    期待能透過 
+                    <input 
+                      type="email" 
+                      name="email" 
+                      placeholder="請留下您的 Email" 
+                      style={styles.inputField}
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    與你進一步聊聊！」
+                  </p>
+                  
+                  <textarea 
+                    ref={textareaRef}
+                    name="message"
+                    rows="4"
+                    placeholder="（ 歡迎直接複製貼上貴司的面試公版邀約文字、或留下你的悄悄話... ）"
+                    style={styles.textareaField}
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                  
+                  <div style={styles.buttonWrapper}>
+                    <button 
+                      type="submit" 
+                      className="antigravity-btn pulse-effect" 
+                      style={{...styles.submitButton, opacity: status === 'loading' ? 0.7 : 1}}
+                      disabled={status === 'loading'}
+                    >
+                      {status === 'loading' ? '信件傳送中...' : '封裝膠囊 / 送出'}
+                    </button>
+                  </div>
+                </>
+              )}
             </form>
           </div>
 
@@ -145,7 +172,7 @@ export default function FooterCTA() {
             <h4 style={styles.sidePanelTitle}>Connect</h4>
             
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=b0938723075@gmail.com" target="_blank" rel="noopener noreferrer" style={styles.iconLink} title="Email Me via Gmail">
-              <div style={styles.iconCircle}>
+              <div style={styles.iconCircle} className="contact-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
@@ -154,14 +181,16 @@ export default function FooterCTA() {
             </a>
 
             <a href="https://line.me/ti/p/~silent0.0" target="_blank" rel="noopener noreferrer" style={styles.iconLink} title="Add LINE">
-              <div style={styles.lineBubble}>
-                <span style={styles.lineText}>LINE</span>
+              <div style={styles.lineBubble} className="contact-btn">
+                <span style={styles.lineText} className="line-text">LINE</span>
               </div>
             </a>
             
-            <div style={styles.phoneWrapper}>
-              <span style={styles.phoneNumber}>0938 723 075</span>
-            </div>
+            <a href="tel:0938723075" style={styles.iconLink} title="Call Me">
+              <div style={styles.phoneWrapper} className="contact-btn">
+                <span style={styles.phoneNumber} className="phone-text">0938 723 075</span>
+              </div>
+            </a>
             <div style={styles.sidePanelLine}></div>
           </div>
         </div>
@@ -299,52 +328,59 @@ const styles = {
     textDecoration: 'none',
   },
   iconCircle: {
-    width: '50px',
-    height: '50px',
+    width: '56px',
+    height: '56px',
     borderRadius: '50%',
     backgroundColor: '#fff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     color: 'var(--text-main)',
-    boxShadow: '0 10px 20px rgba(60, 53, 46, 0.05)',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+    boxShadow: '0 8px 24px rgba(60, 53, 46, 0.08)',
+    border: '1px solid rgba(60, 53, 46, 0.06)',
+    transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
     cursor: 'pointer',
   },
   lineBubble: {
-    width: '54px',
-    height: '54px',
-    borderRadius: '20px 20px 20px 6px',
+    width: '60px',
+    height: '60px',
+    borderRadius: '24px 24px 24px 8px',
     backgroundColor: '#fff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    boxShadow: '0 10px 20px rgba(60, 53, 46, 0.05)',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+    boxShadow: '0 8px 24px rgba(60, 53, 46, 0.08)',
+    border: '1px solid rgba(60, 53, 46, 0.06)',
+    transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
     cursor: 'pointer',
   },
   lineText: {
     fontWeight: 800,
-    fontSize: '0.9rem',
+    fontSize: '0.95rem',
     fontFamily: "'Inter', sans-serif",
     color: 'var(--text-main)',
     letterSpacing: '0.05em',
+    transition: 'color 0.4s',
   },
   phoneWrapper: {
     marginTop: '8px',
     backgroundColor: '#fff',
-    padding: '12px 20px',
+    padding: '14px 24px',
     borderRadius: '50px',
-    boxShadow: '0 10px 20px rgba(60, 53, 46, 0.05)',
+    boxShadow: '0 8px 24px rgba(60, 53, 46, 0.08)',
+    border: '1px solid rgba(60, 53, 46, 0.06)',
+    transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
   },
   phoneNumber: {
     fontFamily: "'Inter', sans-serif",
-    fontSize: '1rem',
+    fontSize: '1.05rem',
     letterSpacing: '0.05em',
     color: 'var(--text-main)',
     fontWeight: 600,
+    transition: 'color 0.4s',
   }
 };
